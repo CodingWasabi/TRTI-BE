@@ -1,0 +1,17 @@
+server:
+  error:
+    include-message: always # Response에 Exception Message 를 항상 표시
+
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      generate-ddl: true
+      show-sql: true
+
+  profiles:
+    active: env
