@@ -1,6 +1,6 @@
 package com.codingwasabi.trti.domain.image.response;
 
-import com.codingwasabi.trti.domain.image.group.model.GroupImage;
+import com.codingwasabi.trti.domain.image.party.model.PartyImage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -9,7 +9,7 @@ import lombok.Getter;
 public class ResponseImageDto {
     private String path;
 
-    public static ResponseImageDto from(GroupImage uploadedImage) {
+    public static ResponseImageDto from(PartyImage uploadedImage) {
         return new ResponseImageDto(uploadedImage.getPath());
     }
 }
