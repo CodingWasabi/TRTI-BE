@@ -1,4 +1,4 @@
-package com.codingwasabi.trti.domain.group.model;
+package com.codingwasabi.trti.domain.party.model;
 
 import com.codingwasabi.trti.domain.common.Period;
 import com.codingwasabi.trti.domain.location.model.Location;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Group extends Period {
+public class Party extends Period {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
