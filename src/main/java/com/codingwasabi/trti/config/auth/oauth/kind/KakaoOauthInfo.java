@@ -20,7 +20,7 @@ public class KakaoOauthInfo implements OauthInfo{
 
     @Override
     public Gender getGender() {
-        return (Gender) attributeMap.get("gender");
+        return Gender.valueOf((String) attributeMap.get("gender"));
     }
 
     @Override

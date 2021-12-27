@@ -24,6 +24,6 @@ public class OauthService {
     }
 
     private boolean isKakao(String provider) {
-        return provider.equals(OauthProvider.KAKAO);
+        return provider.equals(OauthProvider.KAKAO.getContent());
     }
 }
