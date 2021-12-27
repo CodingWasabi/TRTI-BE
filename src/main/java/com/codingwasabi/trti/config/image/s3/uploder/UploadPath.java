@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum UploadPath {
-    GROUP_IMAGE_PATH("image/group");
+    GROUP_IMAGE_PATH("image/group/");
 
     private String path;
 }
