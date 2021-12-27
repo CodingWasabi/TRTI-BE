@@ -12,7 +12,7 @@ import java.util.Collection;
 public class MemberAdaptor implements UserDetails {
 
     @Getter
-    public final Member member;
+    private final Member member;
 
     public MemberAdaptor(Member member) {
         this.member = member;

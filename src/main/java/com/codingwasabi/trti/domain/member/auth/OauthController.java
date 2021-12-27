@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.codingwasabi.trti.domain.member.MemberAPI.OAUTH_JOIN;
-import static com.codingwasabi.trti.domain.member.MemberAPI.OAUTH_LOGIN;
+import static com.codingwasabi.trti.domain.member.model.enumValue.MemberAuthMessage.OAUTH_JOIN;
+import static com.codingwasabi.trti.domain.member.model.enumValue.MemberAuthMessage.OAUTH_LOGIN;
 
 @RestController
 @RequiredArgsConstructor
