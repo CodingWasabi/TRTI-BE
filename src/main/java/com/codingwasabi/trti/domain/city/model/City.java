@@ -1,4 +1,4 @@
-package com.codingwasabi.trti.domain.location.model;
+package com.codingwasabi.trti.domain.city.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,17 +8,13 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Location {
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private City city;
-
-    private String latitude;
-
-    private String longitude;
+    private Location location;
 
     private String information;
 }

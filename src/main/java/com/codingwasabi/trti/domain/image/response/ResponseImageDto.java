@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ResponseImageDto {
-    private String path;
+    private String imageUrl;
 
     public static ResponseImageDto from(PartyImage uploadedImage) {
         return new ResponseImageDto(uploadedImage.getPath());
