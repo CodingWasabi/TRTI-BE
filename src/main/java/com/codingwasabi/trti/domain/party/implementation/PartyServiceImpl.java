@@ -1,7 +1,7 @@
 package com.codingwasabi.trti.domain.party.implementation;
 
-import com.codingwasabi.trti.domain.location.model.City;
-import com.codingwasabi.trti.domain.location.repository.LocationRepository;
+import com.codingwasabi.trti.domain.city.model.Location;
+import com.codingwasabi.trti.domain.city.repository.CityRepository;
 import com.codingwasabi.trti.domain.member.model.entity.Member;
 import com.codingwasabi.trti.domain.member.repository.MemberRepository;
 import com.codingwasabi.trti.domain.memberInParty.model.MemberInParty;
@@ -23,7 +23,7 @@ public class PartyServiceImpl implements PartyService {
     private final PartyRepository partyRepository;
     private final MemberInPartyRepository memberInPartyRepository;
     private final MemberRepository memberRepository;
-    private final LocationRepository locationRepository;
+    private final CityRepository locationRepository;
 
     @Override
     @Transactional
@@ -44,9 +44,9 @@ public class PartyServiceImpl implements PartyService {
     }
 
     private void setPartyCity(RequestCreatePartyDto requestDto, Party party) {
-        City.parseName(requestDto.getLocation());
+        Location.parseName(requestDto.getLocation());
         party.setLocation(locationRepository
-                .findByCity(City.parseName(requestDto.getLocation()))
+                .findByCity(Location.parseName(requestDto.getLocation()))
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 도시의 정보가 존재하지 않습니다.")));
     }
 

@@ -1,7 +1,7 @@
 package com.codingwasabi.trti.domain.party.model;
 
 import com.codingwasabi.trti.domain.common.Period;
-import com.codingwasabi.trti.domain.location.model.Location;
+import com.codingwasabi.trti.domain.city.model.City;
 import com.codingwasabi.trti.domain.member.model.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Optional;
 
 @Entity
 @Getter
@@ -36,7 +35,7 @@ public class Party extends Period {
     private Member captain;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Location location;
+    private City location;
 
     public void setCaptain(Member member) {
         // Error code
@@ -47,7 +46,7 @@ public class Party extends Period {
         this.captain = member;
     }
 
-    public void setLocation(Location city) {
+    public void setLocation(City city) {
         this.location = city;
     }
 }

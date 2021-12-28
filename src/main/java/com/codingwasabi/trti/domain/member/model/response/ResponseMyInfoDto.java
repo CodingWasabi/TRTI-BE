@@ -13,7 +13,7 @@ public class ResponseMyInfoDto {
     private Long id;
     private String nickname;
     private String email;
-    private String image;
+    private String imageUrl;
     private String ageRange;
     private Gender gender;
 
@@ -22,7 +22,7 @@ public class ResponseMyInfoDto {
                 .id(member.getId())
                 .nickname(member.getNickname())
                 .email(member.getEmail())
-                .image(member.getImagePath())
+                .imageUrl(member.getImagePath())
                 .ageRange(member.getAgeRange())
                 .gender(member.getGender())
                 .build();
