@@ -16,4 +16,17 @@ public enum City {
     INCHEON("인천광역시");
 
     private String name;
+
+    public static City parseName(String korName) {
+        for (City city : City.values()) {
+            if (city.toString().equals(korName)) {
+                return city;
+            }
+        }
+
+        throw new IllegalArgumentException("[ERROR] 잘못된 도시 이름이 입력되었습니다.");
+    }
+    public String toString() {
+        return name;
+    }
 }
