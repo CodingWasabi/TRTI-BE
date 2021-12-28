@@ -18,7 +18,14 @@ public class ToStay_3 extends AnswerType {
     private ToStay_3(int answer) {
         super(answer);
     }
+
     public static ToStay_3 from(Integer answer) {
         return new ToStay_3(answer);
+    }
+
+
+    @Override
+    public int getTypeId() {
+        return ID;
     }
 }

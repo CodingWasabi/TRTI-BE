@@ -7,10 +7,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ResponseMemberDetailResultDto {
-    private Long id;
+    private int id;
     private Integer selected;
 
     public static ResponseMemberDetailResultDto from(AnswerType answerType) {
-        return new ResponseMemberDetailResultDto(answerType.getId(), answerType.getSelected());
+        return new ResponseMemberDetailResultDto(answerType.getTypeId(), answerType.getSelected());
     }
 }

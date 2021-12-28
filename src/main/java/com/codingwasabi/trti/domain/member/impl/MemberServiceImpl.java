@@ -38,11 +38,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ResponseMemberResultDto getResult(Member member) {
         return ResponseMemberResultDto.from(member);
     }
 
     @Override
+    @Transactional
     public void submitSurvey(Member member, RequestSurveyDto requestSurveyDto) {
         Result result = SurveyHandler.proceed(requestSurveyDto);
         resultRepository.save(result);

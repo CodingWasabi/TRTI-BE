@@ -22,4 +22,9 @@ public class ToEat_2 extends AnswerType {
     public static ToEat_2 from(Integer answer) {
         return new ToEat_2(answer);
     }
+
+    @Override
+    public int getTypeId() {
+        return ID;
+    }
 }
