@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ResponseMemberResultDto {
     private String name;
-    private List<ResponseMemberDetailResultDto> answer;
+    private List<ResponseMemberDetailResultDto> answers;
 
     public static ResponseMemberResultDto from(Member member) {
         return new ResponseMemberResultDto(member.getNickname(), getDetailResult(member));

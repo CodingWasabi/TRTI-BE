@@ -48,5 +48,6 @@ public class MemberServiceImpl implements MemberService {
         resultRepository.save(result);
         
         member.setResult(result);
+        memberRepository.save(member);
     }
 }

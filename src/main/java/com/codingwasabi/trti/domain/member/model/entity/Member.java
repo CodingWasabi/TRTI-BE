@@ -29,7 +29,7 @@ public class Member extends Period {
 
     private String imagePath;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Result result;
 
     @Enumerated(EnumType.STRING)
