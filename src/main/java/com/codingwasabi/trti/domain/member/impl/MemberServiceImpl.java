@@ -3,10 +3,10 @@ package com.codingwasabi.trti.domain.member.impl;
 import com.codingwasabi.trti.domain.member.MemberService;
 import com.codingwasabi.trti.domain.member.model.entity.Member;
 import com.codingwasabi.trti.domain.member.model.request.RequestExistMemberDto;
-import com.codingwasabi.trti.domain.member.model.response.ResponseExistMemberDto;
-import com.codingwasabi.trti.domain.member.model.response.ResponseMemberResultDto;
-import com.codingwasabi.trti.domain.member.model.response.ResponseMyInfoDto;
+import com.codingwasabi.trti.domain.member.model.response.*;
 import com.codingwasabi.trti.domain.member.repository.MemberRepository;
+import com.codingwasabi.trti.domain.memberInParty.model.MemberInParty;
+import com.codingwasabi.trti.domain.memberInParty.repository.MemberInPartyRepository;
 import com.codingwasabi.trti.domain.result.model.Result;
 import com.codingwasabi.trti.domain.result.repository.ResultRepository;
 import com.codingwasabi.trti.util.survey.SurveyHandler;
@@ -15,11 +15,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final ResultRepository resultRepository;
+    private final MemberInPartyRepository memberInPartyRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -51,5 +55,17 @@ public class MemberServiceImpl implements MemberService {
         
         member.setResult(result);
         memberRepository.save(member);
+    }
+
+    @Override
+    public ResponseMemberPartyListDto getPartyList(Member member) {
+        List<MemberInParty> allByMember = memberInPartyRepository.findAllByMember(member);
+
+        List<ResponsePartyDto> partyDtoList = allByMember.stream()
+                .map((memberInParty) -> memberInParty.getParty())
+                .map((party) -> ResponsePartyDto.of(party, memberInPartyRepository.countByParty(party)))
+                .collect(Collectors.toList());
+        ;
+        return ResponseMemberPartyListDto.from(partyDtoList);
     }
 }

@@ -4,6 +4,7 @@ import com.codingwasabi.trti.config.auth.security.MemberAdaptor;
 import com.codingwasabi.trti.domain.member.MemberService;
 import com.codingwasabi.trti.domain.member.model.request.RequestExistMemberDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseExistMemberDto;
+import com.codingwasabi.trti.domain.member.model.response.ResponseMemberPartyListDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseMemberResultDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseMyInfoDto;
 import com.codingwasabi.trti.util.survey.dto.RequestSurveyDto;
@@ -40,5 +41,11 @@ public class MemberController {
         memberService.submitSurvey(memberAdaptor.getMember(), requestSurveyDto);
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/my/party")
+    public ResponseEntity<ResponseMemberPartyListDto>
+    getPartyList(@AuthenticationPrincipal MemberAdaptor memberAdaptor) {
+        return ResponseEntity.ok(memberService.getPartyList(memberAdaptor.getMember()));
     }
 }
