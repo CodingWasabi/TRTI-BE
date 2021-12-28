@@ -15,7 +15,7 @@ public abstract class AnswerType extends Period implements CountChanger {
     @GeneratedValue
     private Long id;
 
-    private boolean isAgreed = false;
+    private boolean isAgreed = true;
 
     private int count0 = 0;
 
