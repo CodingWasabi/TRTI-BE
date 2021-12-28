@@ -10,4 +10,6 @@ public interface PartyAPI {
     ResponseEntity<?> getPartyInfo(MemberAdaptor memberAdaptor, Long id);
 
     ResponseEntity<?> getPartyMemberList(MemberAdaptor memberAdaptor, Long id);
+
+    ResponseEntity<?> getPartyResult(MemberAdaptor memberAdaptor, Long id);
 }

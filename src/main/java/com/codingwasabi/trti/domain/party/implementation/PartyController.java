@@ -35,4 +35,11 @@ public class PartyController implements PartyAPI {
                                                 @RequestParam(name = "id") Long id) {
         return ResponseEntity.ok(partyService.getMemberList(memberAdaptor.getMember(), id));
     }
+
+    @Override
+    @GetMapping("/result")
+    public ResponseEntity<?> getPartyResult(@AuthenticationPrincipal MemberAdaptor memberAdaptor,
+                                            @RequestParam(name = "id") Long id) {
+        return ResponseEntity.ok(partyService.getResult(memberAdaptor.getMember(), id));
+    }
 }
