@@ -23,7 +23,7 @@ public class PartyServiceImpl implements PartyService {
     private final PartyRepository partyRepository;
     private final MemberInPartyRepository memberInPartyRepository;
     private final MemberRepository memberRepository;
-    private final CityRepository locationRepository;
+    private final CityRepository cityRepository;
 
     @Override
     @Transactional
@@ -45,8 +45,8 @@ public class PartyServiceImpl implements PartyService {
 
     private void setPartyCity(RequestCreatePartyDto requestDto, Party party) {
         Location.parseName(requestDto.getLocation());
-        party.setLocation(locationRepository
-                .findByCity(Location.parseName(requestDto.getLocation()))
+        party.setLocation(cityRepository
+                .findByLocation(Location.parseName(requestDto.getLocation()))
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 도시의 정보가 존재하지 않습니다.")));
     }
 
