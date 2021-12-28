@@ -33,7 +33,7 @@ public class Party extends Period {
     private Member captain;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private City location;
+    private City city;
 
     public void setCaptain(Member member) {
         // Error code
@@ -44,7 +44,11 @@ public class Party extends Period {
         this.captain = member;
     }
 
-    public void setLocation(City city) {
-        this.location = city;
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public String[] getPeriod() {
+        return new String[] {startDate, endDate};
     }
 }
