@@ -8,4 +8,6 @@ public interface PartyAPI {
     ResponseEntity<?> createParty(MemberAdaptor memberAdaptor, RequestCreatePartyDto requestDto);
 
     ResponseEntity<?> getPartyInfo(MemberAdaptor memberAdaptor, Long id);
+
+    ResponseEntity<?> getPartyMemberList(MemberAdaptor memberAdaptor, Long id);
 }
