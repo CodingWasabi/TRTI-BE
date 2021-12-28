@@ -3,6 +3,7 @@ package com.codingwasabi.trti.domain.party.model;
 import com.codingwasabi.trti.domain.common.Period;
 import com.codingwasabi.trti.domain.city.model.City;
 import com.codingwasabi.trti.domain.member.model.entity.Member;
+import com.codingwasabi.trti.domain.result.model.Result;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,6 +30,9 @@ public class Party extends Period {
 
     private boolean isAgreed;
 
+    @OneToOne
+    private Result result;
+
     @OneToOne(fetch = FetchType.LAZY)
     private Member captain;
 
@@ -50,5 +54,12 @@ public class Party extends Period {
 
     public String[] getPeriod() {
         return new String[] {startDate, endDate};
+    }
+
+    public void setResult(Result result) {
+        if (result == null) {
+            throw new IllegalArgumentException("[ERROR] 그룹의 결과처리 과정에서 에러가 발생했습니다. (internal error)");
+        }
+        this.result = result;
     }
 }

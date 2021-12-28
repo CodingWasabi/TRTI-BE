@@ -9,10 +9,7 @@ import com.codingwasabi.trti.domain.memberInParty.repository.MemberInPartyReposi
 import com.codingwasabi.trti.domain.party.PartyService;
 import com.codingwasabi.trti.domain.party.model.Party;
 import com.codingwasabi.trti.domain.party.model.request.RequestCreatePartyDto;
-import com.codingwasabi.trti.domain.party.model.response.ResponseCreatePartyDto;
-import com.codingwasabi.trti.domain.party.model.response.ResponseMemberDto;
-import com.codingwasabi.trti.domain.party.model.response.ResponsePartyInfoDto;
-import com.codingwasabi.trti.domain.party.model.response.ResponsePartyMemberListDto;
+import com.codingwasabi.trti.domain.party.model.response.*;
 import com.codingwasabi.trti.domain.party.repository.PartyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -74,6 +71,16 @@ public class PartyServiceImpl implements PartyService {
                         .map((memberInParty) -> ResponseMemberDto.from(memberInParty))
                         .collect(Collectors.toList())
         );
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ResponsePartyResultDto getResult(Member member, Long id) {
+        // Error code 추가 해야함
+        Party party = partyRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 id의 Party는 존재하지 않습니다."));
+
+        return ResponsePartyResultDto.from(party.getResult());
     }
 
     private void setPartyCaptain(Member member, Party party) {
