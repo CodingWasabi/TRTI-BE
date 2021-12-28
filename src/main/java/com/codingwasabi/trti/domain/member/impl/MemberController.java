@@ -4,6 +4,7 @@ import com.codingwasabi.trti.config.auth.security.MemberAdaptor;
 import com.codingwasabi.trti.domain.member.MemberService;
 import com.codingwasabi.trti.domain.member.model.request.RequestExistMemberDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseExistMemberDto;
+import com.codingwasabi.trti.domain.member.model.response.ResponseMemberResultDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseMyInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +30,9 @@ public class MemberController {
         return ResponseEntity.ok(memberService.existMember(requestDto));
     }
 
-
+    @GetMapping("/my/result")
+    public ResponseEntity<ResponseMemberResultDto>
+    getMemberResult(@AuthenticationPrincipal MemberAdaptor memberAdaptor) {
+        return ResponseEntity.ok(memberService.getResult(memberAdaptor.getMember()));
+    }
 }

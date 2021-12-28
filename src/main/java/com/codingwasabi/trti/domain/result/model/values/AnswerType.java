@@ -2,10 +2,12 @@ package com.codingwasabi.trti.domain.result.model.values;
 
 import com.codingwasabi.trti.domain.common.Period;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Getter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
