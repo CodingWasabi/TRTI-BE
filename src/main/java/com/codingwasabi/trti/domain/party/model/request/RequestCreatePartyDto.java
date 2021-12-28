@@ -4,7 +4,6 @@ import com.codingwasabi.trti.domain.party.model.Party;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -20,8 +19,8 @@ public class RequestCreatePartyDto {
         return Party.builder()
                 .title(title)
                 .imageLink(imageUrl)
-                .startDate(LocalDate.parse(period[0]))
-                .endDate(LocalDate.parse(period[1]))
+                .startDate(period[0])
+                .endDate(period[1])
                 .build();
     }
 }

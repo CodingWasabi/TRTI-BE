@@ -9,8 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-
 @Entity
 @Getter
 @Builder
@@ -25,9 +23,9 @@ public class Party extends Period {
 
     private String imageLink;
 
-    private LocalDate startDate;
+    private String startDate;
 
-    private LocalDate endDate;
+    private String endDate;
 
     private boolean isAgreed;
 
