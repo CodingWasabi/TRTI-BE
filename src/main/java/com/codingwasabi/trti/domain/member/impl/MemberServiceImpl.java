@@ -4,6 +4,7 @@ import com.codingwasabi.trti.domain.member.MemberService;
 import com.codingwasabi.trti.domain.member.model.entity.Member;
 import com.codingwasabi.trti.domain.member.model.request.RequestExistMemberDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseExistMemberDto;
+import com.codingwasabi.trti.domain.member.model.response.ResponseMemberResultDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseMyInfoDto;
 import com.codingwasabi.trti.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +30,10 @@ public class MemberServiceImpl implements MemberService {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력된 이메일의 회원은 존재하지 않습니다."));
 
         return ResponseExistMemberDto.from(member);
+    }
+
+    @Override
+    public ResponseMemberResultDto getResult(Member member) {
+        return ResponseMemberResultDto.from(member);
     }
 }
