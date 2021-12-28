@@ -10,13 +10,16 @@ import com.codingwasabi.trti.domain.party.PartyService;
 import com.codingwasabi.trti.domain.party.model.Party;
 import com.codingwasabi.trti.domain.party.model.request.RequestCreatePartyDto;
 import com.codingwasabi.trti.domain.party.model.response.ResponseCreatePartyDto;
+import com.codingwasabi.trti.domain.party.model.response.ResponseMemberDto;
 import com.codingwasabi.trti.domain.party.model.response.ResponsePartyInfoDto;
+import com.codingwasabi.trti.domain.party.model.response.ResponsePartyMemberListDto;
 import com.codingwasabi.trti.domain.party.repository.PartyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -49,9 +52,28 @@ public class PartyServiceImpl implements PartyService {
         Party party = partyRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 id의 Party는 존재하지 않습니다."));
         ResponsePartyInfoDto responseDto = ResponsePartyInfoDto.from(party);
-        responseDto.setParticipantsCount( memberInPartyRepository.countByParty(party) );
+        responseDto.setParticipantsCount(memberInPartyRepository.countByParty(party));
 
         return responseDto;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ResponsePartyMemberListDto getMemberList(Member member, Long id) {
+        // 현재 로그인한 회원이 조회 권한이 있는지 확인 하는 검증 로직 구현해야함
+
+        // Error code 추가 해야함
+        Party party = partyRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 id의 Party는 존재하지 않습니다."));
+
+        List<MemberInParty> memberList = memberInPartyRepository.findAllByParty(party);
+
+        return ResponsePartyMemberListDto.of(
+                memberList.size(),
+                memberList.stream()
+                        .map((memberInParty) -> ResponseMemberDto.from(memberInParty))
+                        .collect(Collectors.toList())
+        );
     }
 
     private void setPartyCaptain(Member member, Party party) {
