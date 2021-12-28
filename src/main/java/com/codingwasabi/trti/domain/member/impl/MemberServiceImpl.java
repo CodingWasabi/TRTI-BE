@@ -7,6 +7,10 @@ import com.codingwasabi.trti.domain.member.model.response.ResponseExistMemberDto
 import com.codingwasabi.trti.domain.member.model.response.ResponseMemberResultDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseMyInfoDto;
 import com.codingwasabi.trti.domain.member.repository.MemberRepository;
+import com.codingwasabi.trti.domain.result.model.Result;
+import com.codingwasabi.trti.domain.result.repository.ResultRepository;
+import com.codingwasabi.trti.util.survey.SurveyHandler;
+import com.codingwasabi.trti.util.survey.dto.RequestSurveyDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
+    private final ResultRepository resultRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -35,5 +40,13 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public ResponseMemberResultDto getResult(Member member) {
         return ResponseMemberResultDto.from(member);
+    }
+
+    @Override
+    public void submitSurvey(Member member, RequestSurveyDto requestSurveyDto) {
+        Result result = SurveyHandler.proceed(requestSurveyDto);
+        resultRepository.save(result);
+        
+        member.setResult(result);
     }
 }

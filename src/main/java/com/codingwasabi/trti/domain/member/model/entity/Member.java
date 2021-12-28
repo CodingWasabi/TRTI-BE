@@ -5,10 +5,7 @@ import com.codingwasabi.trti.domain.common.Period;
 import com.codingwasabi.trti.domain.member.model.enumValue.Authority;
 import com.codingwasabi.trti.domain.member.model.enumValue.Gender;
 import com.codingwasabi.trti.domain.result.model.Result;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -52,5 +49,12 @@ public class Member extends Period {
 
     public Result getResult() {
         return result;
+    }
+
+    public void setResult(Result result) {
+        if (result == null) {
+            throw new IllegalArgumentException("[ERROR] 성향 검사 추출 중 에러가 발생했습니다. (internal error)");
+        }
+        this.result = result;
     }
 }

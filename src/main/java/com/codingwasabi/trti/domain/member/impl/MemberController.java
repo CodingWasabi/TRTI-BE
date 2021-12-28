@@ -6,13 +6,11 @@ import com.codingwasabi.trti.domain.member.model.request.RequestExistMemberDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseExistMemberDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseMemberResultDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseMyInfoDto;
+import com.codingwasabi.trti.util.survey.dto.RequestSurveyDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,5 +32,13 @@ public class MemberController {
     public ResponseEntity<ResponseMemberResultDto>
     getMemberResult(@AuthenticationPrincipal MemberAdaptor memberAdaptor) {
         return ResponseEntity.ok(memberService.getResult(memberAdaptor.getMember()));
+    }
+
+    @PostMapping("/survey")
+    public ResponseEntity<?> submitSurvey(@AuthenticationPrincipal MemberAdaptor memberAdaptor,
+                                          @RequestBody RequestSurveyDto requestSurveyDto) {
+        memberService.submitSurvey(memberAdaptor.getMember(), requestSurveyDto);
+
+        return ResponseEntity.ok().build();
     }
 }
