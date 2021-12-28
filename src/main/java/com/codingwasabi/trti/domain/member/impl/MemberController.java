@@ -5,7 +5,6 @@ import com.codingwasabi.trti.domain.member.MemberService;
 import com.codingwasabi.trti.domain.member.model.request.RequestExistMemberDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseExistMemberDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseMyInfoDto;
-import com.codingwasabi.trti.domain.result.model.response.ResponseResultDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,8 +29,5 @@ public class MemberController {
         return ResponseEntity.ok(memberService.existMember(requestDto));
     }
 
-    @GetMapping("/my/result")
-    public ResponseEntity<ResponseResultDto> getMemberResult(@AuthenticationPrincipal MemberAdaptor memberAdaptor) {
-        return ResponseEntity.ok(memberService.getResult(memberAdaptor.getMember()));
-    }
+
 }

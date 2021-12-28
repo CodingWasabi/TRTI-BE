@@ -6,7 +6,6 @@ import com.codingwasabi.trti.domain.member.model.request.RequestExistMemberDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseExistMemberDto;
 import com.codingwasabi.trti.domain.member.model.response.ResponseMyInfoDto;
 import com.codingwasabi.trti.domain.member.repository.MemberRepository;
-import com.codingwasabi.trti.domain.result.model.response.ResponseResultDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,11 +29,5 @@ public class MemberServiceImpl implements MemberService {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력된 이메일의 회원은 존재하지 않습니다."));
 
         return ResponseExistMemberDto.from(member);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public ResponseResultDto getResult(Member member) {
-        return ResponseResultDto.from(member);
     }
 }

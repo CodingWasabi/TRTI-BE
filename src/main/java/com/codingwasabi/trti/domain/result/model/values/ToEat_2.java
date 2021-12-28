@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 @Entity
 @Getter
 @NoArgsConstructor
-@DiscriminatorValue("TOACTIVE")
-public class ToActive extends AnswerType {
+@DiscriminatorValue("TOEAT_2")
+public class ToEat_2 extends AnswerType {
     @Transient
-    private final int ID = 7;
+    private final int ID = 3;
 }

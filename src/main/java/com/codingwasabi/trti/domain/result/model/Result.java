@@ -18,19 +18,38 @@ public class Result {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private ToStay toStay;
 
-    @Enumerated(EnumType.STRING)
-    private ToEat toEat;
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private ToEat_1 toEat_1;
 
-    @Enumerated(EnumType.STRING)
-    private ToMove toMove;
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private ToEat_2 toEat_2;
 
-    @Enumerated(EnumType.STRING)
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private ToStay_1 toStay_1;
+
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private ToStay_2 toStay_2;
+
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private ToStay_3 toStay_3;
+
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private ToActive toActive;
-
-    @Enumerated(EnumType.STRING)
-    private Time time;
-
 }
