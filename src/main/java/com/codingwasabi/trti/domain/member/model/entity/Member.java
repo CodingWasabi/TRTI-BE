@@ -4,6 +4,7 @@ import com.codingwasabi.trti.config.auth.oauth.provider.OauthProvider;
 import com.codingwasabi.trti.domain.common.Period;
 import com.codingwasabi.trti.domain.member.model.enumValue.Authority;
 import com.codingwasabi.trti.domain.member.model.enumValue.Gender;
+import com.codingwasabi.trti.domain.result.model.Result;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,6 +32,9 @@ public class Member extends Period {
 
     private String imagePath;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Result result;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
@@ -44,5 +48,9 @@ public class Member extends Period {
 
     public Authority getAuthority() {
         return authority;
+    }
+
+    public Result getResult() {
+        return result;
     }
 }

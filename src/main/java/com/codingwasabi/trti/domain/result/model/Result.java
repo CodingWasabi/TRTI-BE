@@ -3,11 +3,13 @@ package com.codingwasabi.trti.domain.result.model;
 import com.codingwasabi.trti.domain.result.model.values.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
