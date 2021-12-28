@@ -48,6 +48,9 @@ public class Member extends Period {
     }
 
     public Result getResult() {
+        if (result == null) {
+            throw new IllegalArgumentException("[ERROR] " + id + " 사용자는 성향결과가 존재하지 않습니다.");
+        }
         return result;
     }
 

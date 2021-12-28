@@ -48,5 +48,23 @@ public abstract class AnswerType extends Period implements CountChanger {
         this.count1--;
     }
 
+    public boolean isConflict() {
+        if (count0 == count1) {
+            isAgreed = false;
+            selected = 2;
+            return true;
+        }
+
+        if(count0 > count1) {
+            selected = 0;
+        }
+
+        else {
+            selected = 1;
+        }
+
+        return false;
+    }
+
     public abstract int getTypeId();
 }

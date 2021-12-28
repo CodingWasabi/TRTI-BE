@@ -37,7 +37,9 @@ public class PartyController implements PartyAPI {
     }
 
     @Override
-    public ResponseEntity<?> getPartyResult(MemberAdaptor memberAdaptor, Long id) {
+    @GetMapping("/result")
+    public ResponseEntity<?> getPartyResult(@AuthenticationPrincipal MemberAdaptor memberAdaptor,
+                                            @RequestParam(name = "id") Long id) {
         return ResponseEntity.ok(partyService.getResult(memberAdaptor.getMember(), id));
     }
 }

@@ -11,6 +11,9 @@ import com.codingwasabi.trti.domain.party.model.Party;
 import com.codingwasabi.trti.domain.party.model.request.RequestCreatePartyDto;
 import com.codingwasabi.trti.domain.party.model.response.*;
 import com.codingwasabi.trti.domain.party.repository.PartyRepository;
+import com.codingwasabi.trti.domain.result.model.Result;
+import com.codingwasabi.trti.domain.result.repository.ResultRepository;
+import com.codingwasabi.trti.util.survey.SurveyHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +28,7 @@ public class PartyServiceImpl implements PartyService {
     private final MemberInPartyRepository memberInPartyRepository;
     private final MemberRepository memberRepository;
     private final CityRepository cityRepository;
+    private final ResultRepository resultRepository;
 
     @Override
     @Transactional
@@ -37,7 +41,22 @@ public class PartyServiceImpl implements PartyService {
 
         putMemberInParty(party, requestDto.getMembers());
 
+        List<Member> memberList = getMemberList(memberInPartyRepository.findAllByParty(party));
+
+        Result result = SurveyHandler.proceedForParty(memberList);
+        party.setResult(result);
+
+        resultRepository.save(result);
+        partyRepository.save(party);
+
         return ResponseCreatePartyDto.from(party);
+    }
+
+    private List<Member> getMemberList(List<MemberInParty> allByParty) {
+        List<Member> memberList = allByParty.stream()
+                .map((memberInParty) -> memberInParty.getMember())
+                .collect(Collectors.toList());
+        return memberList;
     }
 
     @Override
@@ -88,7 +107,8 @@ public class PartyServiceImpl implements PartyService {
     }
 
     private void setPartyCity(RequestCreatePartyDto requestDto, Party party) {
-        Location.parseName(requestDto.getLocation());
+        System.out.println(requestDto.getLocation());
+        System.out.println(Location.parseName(requestDto.getLocation()));
         party.setCity(cityRepository
                 .findByLocation(Location.parseName(requestDto.getLocation()))
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 도시의 정보가 존재하지 않습니다.")));

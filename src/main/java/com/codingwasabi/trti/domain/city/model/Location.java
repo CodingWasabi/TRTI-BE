@@ -21,7 +21,7 @@ public enum Location {
 
     public static Location parseName(String korName) {
         for (Location location : Location.values()) {
-            if (location.toString().equals(korName)) {
+            if (location.getName().equals(korName)) {
                 return location;
             }
         }
@@ -29,7 +29,4 @@ public enum Location {
         throw new IllegalArgumentException("[ERROR] 잘못된 도시 이름이 입력되었습니다.");
     }
 
-    public String toString() {
-        return name;
-    }
 }

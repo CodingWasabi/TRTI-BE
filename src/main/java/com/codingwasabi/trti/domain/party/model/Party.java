@@ -28,7 +28,7 @@ public class Party extends Period {
 
     private String endDate;
 
-    private boolean isAgreed;
+    private boolean isAgreed = true;
 
     @OneToOne
     private Result result;
@@ -60,6 +60,14 @@ public class Party extends Period {
         if (result == null) {
             throw new IllegalArgumentException("[ERROR] 그룹의 결과처리 과정에서 에러가 발생했습니다. (internal error)");
         }
+
+        if(result.isConflict()) {
+            isAgreed = false;
+        }
+        else {
+            isAgreed = true;
+        }
+
         this.result = result;
     }
 }
