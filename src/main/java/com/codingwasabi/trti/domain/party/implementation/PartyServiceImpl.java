@@ -10,6 +10,7 @@ import com.codingwasabi.trti.domain.party.PartyService;
 import com.codingwasabi.trti.domain.party.model.Party;
 import com.codingwasabi.trti.domain.party.model.request.RequestCreatePartyDto;
 import com.codingwasabi.trti.domain.party.model.response.ResponseCreatePartyDto;
+import com.codingwasabi.trti.domain.party.model.response.ResponsePartyInfoDto;
 import com.codingwasabi.trti.domain.party.repository.PartyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,13 +40,27 @@ public class PartyServiceImpl implements PartyService {
         return ResponseCreatePartyDto.from(party);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public ResponsePartyInfoDto getInfo(Member member, Long id) {
+        // 현재 로그인한 회원이 조회 권한이 있는지 확인 하는 검증 로직 구현해야함
+
+        // Error code 추가 해야함
+        Party party = partyRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 id의 Party는 존재하지 않습니다."));
+        ResponsePartyInfoDto responseDto = ResponsePartyInfoDto.from(party);
+        responseDto.setParticipantsCount( memberInPartyRepository.countByParty(party) );
+
+        return responseDto;
+    }
+
     private void setPartyCaptain(Member member, Party party) {
         party.setCaptain(member);
     }
 
     private void setPartyCity(RequestCreatePartyDto requestDto, Party party) {
         Location.parseName(requestDto.getLocation());
-        party.setLocation(cityRepository
+        party.setCity(cityRepository
                 .findByLocation(Location.parseName(requestDto.getLocation()))
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 도시의 정보가 존재하지 않습니다.")));
     }

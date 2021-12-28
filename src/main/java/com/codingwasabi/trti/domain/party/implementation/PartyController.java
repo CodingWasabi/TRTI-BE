@@ -7,10 +7,7 @@ import com.codingwasabi.trti.domain.party.model.request.RequestCreatePartyDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,5 +20,12 @@ public class PartyController implements PartyAPI {
     public ResponseEntity<?> createParty(@AuthenticationPrincipal MemberAdaptor memberAdaptor,
                                          @RequestBody RequestCreatePartyDto requestDto) {
         return ResponseEntity.ok(partyService.create(memberAdaptor.getMember(), requestDto));
+    }
+
+    @Override
+    @GetMapping("/info")
+    public ResponseEntity<?> getPartyInfo(@AuthenticationPrincipal MemberAdaptor memberAdaptor,
+                                          @RequestParam(name = "id") Long id) {
+        return ResponseEntity.ok(partyService.getInfo(memberAdaptor.getMember(), id));
     }
 }
