@@ -29,4 +29,5 @@ public class MemberController {
         return ResponseEntity.ok(memberService.existMember(requestDto));
     }
 
+
 }
