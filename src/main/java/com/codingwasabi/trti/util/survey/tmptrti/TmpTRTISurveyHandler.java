@@ -7,6 +7,6 @@ import com.codingwasabi.trti.util.survey.dto.RequestSurveyDto;
 public class TmpTRTISurveyHandler implements SurveyHandler {
     @Override
     public Result proceed(RequestSurveyDto requestDto) {
-        return null;
+        return Result.from(requestDto.getAnswers());
     }
 }
