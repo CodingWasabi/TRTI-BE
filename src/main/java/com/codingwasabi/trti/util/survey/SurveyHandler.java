@@ -4,5 +4,8 @@ import com.codingwasabi.trti.domain.result.model.Result;
 import com.codingwasabi.trti.util.survey.dto.RequestSurveyDto;
 
 public interface SurveyHandler {
-    Result proceed(RequestSurveyDto requestDto);
+
+    static Result proceed(RequestSurveyDto requestDto) {
+        return Result.from(requestDto.getAnswers());
+    }
 }
