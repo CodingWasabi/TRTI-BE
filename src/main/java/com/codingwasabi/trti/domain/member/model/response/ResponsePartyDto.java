@@ -14,7 +14,7 @@ public class ResponsePartyDto {
     private String location;
     private int participantsCount;
     private String imageUrl;
-    private boolean isAgreed;
+    private Boolean isAgreed;
     private String[] period;
 
     public static ResponsePartyDto of(Party party, int participantsCount) {

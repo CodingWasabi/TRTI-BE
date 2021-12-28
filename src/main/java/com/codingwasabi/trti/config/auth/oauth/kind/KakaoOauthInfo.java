@@ -30,7 +30,9 @@ public class KakaoOauthInfo implements OauthInfo{
 
     @Override
     public String getImagePath() {
-        return (String) attributeMap.get("profileImage");
+        if( attributeMap.containsKey("profileImage"))
+            return (String) attributeMap.get("profileImage");
+        return "null";
     }
 
     @Override

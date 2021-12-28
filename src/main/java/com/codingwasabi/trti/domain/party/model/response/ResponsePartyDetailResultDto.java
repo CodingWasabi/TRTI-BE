@@ -8,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ResponsePartyDetailResultDto {
     private int id;
-    private boolean isAgreed;
+    private Boolean isAgreed;
     private int count0;
     private int count1;
     private int selected;
