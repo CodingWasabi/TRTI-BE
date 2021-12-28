@@ -14,4 +14,11 @@ import javax.persistence.Transient;
 public class ToActive extends AnswerType {
     @Transient
     private final int ID = 7;
+
+    private ToActive(int answer) {
+        super(answer);
+    }
+    public static ToActive from(Integer answer) {
+        return new ToActive(answer);
+    }
 }

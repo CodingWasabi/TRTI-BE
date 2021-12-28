@@ -15,4 +15,10 @@ public class ToStay_3 extends AnswerType {
     @Transient
     private final int ID = 6;
 
+    private ToStay_3(int answer) {
+        super(answer);
+    }
+    public static ToStay_3 from(Integer answer) {
+        return new ToStay_3(answer);
+    }
 }

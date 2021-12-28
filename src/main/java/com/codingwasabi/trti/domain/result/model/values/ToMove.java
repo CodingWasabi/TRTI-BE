@@ -11,7 +11,15 @@ import javax.persistence.Transient;
 @Getter
 @NoArgsConstructor
 @DiscriminatorValue("TOSTAY")
-public class ToStay extends AnswerType {
+public class ToMove extends AnswerType {
     @Transient
     private final int ID = 1;
+
+    private ToMove(int answer) {
+        super(answer);
+    }
+
+    public static ToMove from(int answer) {
+        return new ToMove(answer);
+    }
 }

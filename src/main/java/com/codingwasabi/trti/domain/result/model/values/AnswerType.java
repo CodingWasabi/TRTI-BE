@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
-@AllArgsConstructor
 @DiscriminatorColumn(name = "answer_type")
 public abstract class AnswerType extends Period implements CountChanger {
     @Id
@@ -23,6 +22,10 @@ public abstract class AnswerType extends Period implements CountChanger {
     private int count1 = 0;
 
     private int selected;
+
+    public AnswerType(int selected) {
+        this.selected = selected;
+    }
 
     @Override
     public void addCount0() {

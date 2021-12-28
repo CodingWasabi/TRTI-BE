@@ -14,4 +14,11 @@ import javax.persistence.Transient;
 public class ToEat_1 extends AnswerType {
     @Transient
     private final int ID = 2;
+
+    private ToEat_1(int answer) {
+        super(answer);
+    }
+    public static ToEat_1 from(Integer answer) {
+        return new ToEat_1(answer);
+    }
 }
