@@ -22,4 +22,9 @@ public class ToMove extends AnswerType {
     public static ToMove from(int answer) {
         return new ToMove(answer);
     }
+
+    @Override
+    public int getTypeId() {
+        return ID;
+    }
 }

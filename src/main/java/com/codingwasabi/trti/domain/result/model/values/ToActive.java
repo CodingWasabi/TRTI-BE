@@ -21,4 +21,9 @@ public class ToActive extends AnswerType {
     public static ToActive from(Integer answer) {
         return new ToActive(answer);
     }
+
+    @Override
+    public int getTypeId() {
+        return ID;
+    }
 }

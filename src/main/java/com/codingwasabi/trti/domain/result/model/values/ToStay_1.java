@@ -21,4 +21,9 @@ public class ToStay_1 extends AnswerType {
     public static ToStay_1 from(Integer answer) {
         return new ToStay_1(answer);
     }
+
+    @Override
+    public int getTypeId() {
+        return ID;
+    }
 }

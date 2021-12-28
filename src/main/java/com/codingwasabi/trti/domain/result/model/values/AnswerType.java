@@ -1,7 +1,6 @@
 package com.codingwasabi.trti.domain.result.model.values;
 
 import com.codingwasabi.trti.domain.common.Period;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -48,4 +47,6 @@ public abstract class AnswerType extends Period implements CountChanger {
     public void minusCount1() {
         this.count1--;
     }
+
+    public abstract int getTypeId();
 }

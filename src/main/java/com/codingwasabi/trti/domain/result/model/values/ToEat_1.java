@@ -21,4 +21,9 @@ public class ToEat_1 extends AnswerType {
     public static ToEat_1 from(Integer answer) {
         return new ToEat_1(answer);
     }
+
+    @Override
+    public int getTypeId() {
+        return ID;
+    }
 }
